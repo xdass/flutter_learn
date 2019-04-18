@@ -7,17 +7,17 @@ class Products extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    return               Column(
-                children: 
-                  products.map((element) => Card(
-                        child: Column(
-                          children: <Widget>[
-                            Image.asset('assets/food.jpg'),
-                            Text(element)
-                          ],
-                        ),
-                      )).toList(),
-              ),
+    return Column(
+      children: products
+          .map((element) => Card(
+                child: Column(
+                  children: <Widget>[
+                    Image.asset('assets/food.jpg'),
+                    Text(element)
+                  ],
+                ),
+              ))
+          .toList(),
+    );
   }
 }
