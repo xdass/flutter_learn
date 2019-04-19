@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 
 class ProductControl extends StatelessWidget {
+  final Function addProduct;
+
+  ProductControl(this.addProduct);
+
   @override
   Widget build(BuildContext context) {
     return RaisedButton(
             onPressed: () {
-              setState(() {
-                _products.add('Eater');
-              });
+              addProduct('Sweets');
             },
             child: Text('Add product'),
-          ),
+          );
   }
 }
