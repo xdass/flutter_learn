@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import './product_manager.dart';
 // import 'package:flutter/rendering.dart';
 
+import './pages/home.dart';
+
 void main() {
   // debugPaintBaselinesEnabled = true;
   runApp(MyApp());
@@ -13,11 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       // debugShowMaterialGrid: true,
       theme: ThemeData(primarySwatch: Colors.deepOrange),
-      home: Scaffold(
-          appBar: AppBar(
-            title: Text('Simple App'),
-          ),
-          body: ProductManager()),
+      home: HomePage(),
     );
   }
 }
