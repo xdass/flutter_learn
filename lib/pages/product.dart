@@ -1,38 +1,14 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import '../widgets/products/price_tag.dart';
+import '../widgets/ui_elements/title_default.dart';
 
 class ProductPage extends StatelessWidget {
-  final String title;
+  final Map<String, dynamic> _product;
   final String imageUrl;
 
-  ProductPage(this.title, this.imageUrl);
-
-  _showWarningDialog(BuildContext context) {
-    showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text('Are you sure?'),
-            content: Text('This action cannot be undone!'),
-            actions: <Widget>[
-              FlatButton(
-                child: Text('DISCARD'),
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-              ),
-              FlatButton(
-                child: Text('CONTINUE'),
-                onPressed: () {
-                  Navigator.pop(context);
-                  Navigator.pop(context, true);
-                },
-              ),
-            ],
-          );
-        });
-  }
+  ProductPage(this._product, this.imageUrl);
 
   @override
   Widget build(BuildContext context) {
@@ -44,22 +20,35 @@ class ProductPage extends StatelessWidget {
       },
       child: Scaffold(
           appBar: AppBar(
-            title: Text(title),
+            title: Text(_product['title']),
           ),
           body: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Image.asset(imageUrl),
               Container(
-                padding: EdgeInsets.all(10.0),
-                child: Text(title),
+                padding: EdgeInsets.symmetric(vertical: 8, horizontal: 5),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    TitleDefault(_product['title'],),
+                    Container(
+                      decoration: BoxDecoration(
+                          color: Theme.of(context).primaryColor,
+                          borderRadius: BorderRadius.circular(5)),
+                          child: PriceTag(_product['priceValue'].toString()),
+                    ),
+                  ],
+                ),
               ),
-              Container(
-                  child: RaisedButton(
-                color: Theme.of(context).accentColor,
-                child: Text('DELETE'),
-                onPressed: () => _showWarningDialog(context),
-              )),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Container(
+                    padding: EdgeInsets.all(5),
+                    child: Text('Описание: ${_product['description']}'),
+                  ),
+                ],
+              ),
             ],
           )),
     );

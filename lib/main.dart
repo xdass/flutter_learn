@@ -28,7 +28,7 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
-  void _deleteProduct(int index) {
+    void _deleteProduct(int index) {
     setState(() {
       _products.removeAt(index);
     });
@@ -55,7 +55,7 @@ class _MyAppState extends State<MyApp> {
           final int index = int.parse(pathElements[2]);
           return MaterialPageRoute<bool>(
               builder: (BuildContext context) => ProductPage(
-                  _products[index]['title'], _products[index]['image']));
+                  _products[index], _products[index]['image']));
         }
         return null;
       },
